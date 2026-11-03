@@ -1,0 +1,74 @@
+---
+import type { Locale, ProjectId } from '../content/portfolio';
+import { content } from '../content/portfolio';
+
+interface Props { id: ProjectId; lang: Locale }
+const { id, lang } = Astro.props;
+const visual = content[lang].visuals[id];
+---
+
+{id === 'hmm' && (
+  <figure class="project-visual visual-hmm" aria-labelledby="hmm-visual-title">
+    <figcaption id="hmm-visual-title" class="visual-heading">{visual.heading}</figcaption>
+    <div class="hmm-flow">
+      {content[lang].visuals.hmm.nodes.map((node, index) => (
+        <div class:list={['flow-node', { 'flow-node-accent': index === 2 }]}>
+          <span class="node-index">0{index + 1}</span>
+          <span>{node}</span>
+        </div>
+      ))}
+    </div>
+    <div class="regime-list" aria-label={content[lang].visuals.hmm.nodes[3]}>
+      {content[lang].visuals.hmm.regimes.map((regime, index) => <span class:list={['regime-chip', `regime-${index}`]}>{regime}</span>)}
+    </div>
+    <p class="visual-caption">{visual.caption}</p>
+  </figure>
+)}
+
+{id === 'arima' && (
+  <figure class="project-visual visual-arima" aria-labelledby="arima-visual-title">
+    <figcaption id="arima-visual-title" class="visual-heading">{visual.heading}</figcaption>
+    <div class="arima-flow">
+      <div class="flow-node"><span class="node-index">01</span><span>{content[lang].visuals.arima.nodes[0]}</span></div>
+      <div class="flow-node"><span class="node-index">02</span><span>{content[lang].visuals.arima.nodes[1]}</span></div>
+      <div class="method-split">
+        <div class="method-path"><span class="method-tag">PY</span><span>{content[lang].visuals.arima.python}</span></div>
+        <div class="method-path"><span class="method-tag">R</span><span>{content[lang].visuals.arima.r}</span></div>
+      </div>
+      <div class="flow-node flow-node-accent"><span class="node-index">03</span><span>{content[lang].visuals.arima.nodes[2]}</span></div>
+      <div class="flow-node"><span class="node-index">04</span><span>{content[lang].visuals.arima.nodes[3]}</span></div>
+    </div>
+    <p class="visual-caption">{visual.caption}</p>
+  </figure>
+)}
+
+{id === 'decno' && (
+  <figure class="project-visual visual-decno" aria-labelledby="decno-visual-title">
+    <figcaption id="decno-visual-title" class="visual-heading">{visual.heading}</figcaption>
+    <ol class="phase-list">
+      {content[lang].visuals.decno.phases.map((phase, index) => (
+        <li class:list={['phase-item', { 'phase-current': index === 1 }]}>
+          <span class="phase-number">0{index + 1}</span>
+          <span class="phase-name">{phase}</span>
+          <span class="phase-status">{index === 1 ? content[lang].visuals.decno.current : index === 2 ? content[lang].visuals.decno.planned : ''}</span>
+        </li>
+      ))}
+    </ol>
+    <p class="visual-caption">{visual.caption}</p>
+  </figure>
+)}
+
+{id === 'althlon' && (
+  <figure class="project-visual visual-althlon" aria-labelledby="althlon-visual-title">
+    <figcaption id="althlon-visual-title" class="visual-heading">{visual.heading}</figcaption>
+    <div class="architecture-flow">
+      {content[lang].visuals.althlon.nodes.map((node, index) => (
+        <div class:list={['architecture-node', { 'architecture-node-accent': index === 1 }]}>
+          <span class="architecture-icon" aria-hidden="true">{index === 0 ? '◇' : index === 1 ? '⌘' : index === 2 ? '↗' : '▤'}</span>
+          <span>{node}</span>
+        </div>
+      ))}
+    </div>
+    <p class="visual-caption">{visual.caption}</p>
+  </figure>
+)}

@@ -1,0 +1,258 @@
+---
+import '../styles/global.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import HeroGraphic from './HeroGraphic.astro';
+import ProjectVisual from './ProjectVisual.astro';
+import { contactLinks, content, projectLinks, type Locale } from '../content/portfolio';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const copy = content[lang];
+const pagePath = lang === 'en' ? '/' : '/es/';
+const alternatePath = lang === 'en' ? '/es/' : '/';
+const canonical = Astro.site ? new URL(pagePath, Astro.site).href : undefined;
+const alternate = Astro.site ? new URL(alternatePath, Astro.site).href : alternatePath;
+const englishUrl = Astro.site ? new URL('/', Astro.site).href : '/';
+const spanishUrl = Astro.site ? new URL('/es/', Astro.site).href : '/es/';
+const navItems = [
+  { id: 'about', label: copy.nav.about },
+  { id: 'projects', label: copy.nav.projects },
+  { id: 'research', label: copy.nav.research },
+  { id: 'contact', label: copy.nav.contact }
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1120" />
+    <meta name="description" content={copy.meta.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={copy.meta.title} />
+    <meta property="og:description" content={copy.meta.description} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_CO'} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="es" href={spanishUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{copy.meta.title}</title>
+    <script is:inline>
+      try {
+        if (location.pathname === '/' && sessionStorage.getItem('portfolio-language') === 'es') {
+          location.replace('/es/' + location.search + location.hash);
+        }
+      } catch (_) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{lang === 'en' ? 'Skip to content' : 'Saltar al contenido'}</a>
+    <header class="site-header">
+      <div class="nav-shell page-container">
+        <a class="brand" href={pagePath} aria-label={copy.hero.title + ' — ' + (lang === 'en' ? 'home' : 'inicio')}>
+          <span class="brand-mark" aria-hidden="true">S<span>.</span>R</span>
+          <span class="brand-name">Sebastián Rodríguez Ríos</span>
+        </a>
+        <nav class="desktop-nav" aria-label={copy.nav.menu}>
+          {navItems.map((item) => <a class="nav-link" href={'#' + item.id} data-nav-link={item.id}>{item.label}</a>)}
+        </nav>
+        <div class="language-switch" role="group" aria-label={copy.nav.language}>
+          <a href="/" data-language="en" lang="en" aria-current={lang === 'en' ? 'page' : undefined}>EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/es/" data-language="es" lang="es" aria-current={lang === 'es' ? 'page' : undefined}>ES</a>
+        </div>
+      </div>
+      <details class="mobile-nav page-container">
+        <summary>{copy.nav.menu}<span aria-hidden="true">＋</span></summary>
+        <nav aria-label={copy.nav.menu}>
+          {navItems.map((item) => <a class="nav-link" href={'#' + item.id} data-nav-link={item.id}>{item.label}</a>)}
+        </nav>
+      </details>
+    </header>
+
+    <main id="main">
+      <section id="hero" class="hero-section page-container" data-section>
+        <div class="hero-content">
+          <p class="eyebrow hero-eyebrow"><span class="eyebrow-line"></span>{copy.hero.eyebrow}</p>
+          <h1>{copy.hero.title}</h1>
+          <p class="hero-message">{copy.hero.message}</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">{copy.hero.action}<span aria-hidden="true">↘</span></a>
+            <a class="text-link" href={contactLinks.github} target="_blank" rel="noopener noreferrer">{copy.hero.github}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>
+          </div>
+        </div>
+        <HeroGraphic lang={lang} />
+        <div class="hero-bottom" aria-hidden="true"><span>SRR / 2026</span><span>↓</span></div>
+      </section>
+
+      <section id="about" class="section about-section" data-section data-reveal>
+        <div class="page-container section-grid">
+          <div class="section-heading">
+            <p class="eyebrow">{copy.about.eyebrow}</p>
+            <h2>{copy.about.title}</h2>
+          </div>
+          <div class="about-copy">
+            <p class="large-copy">{copy.about.body}</p>
+            <p>{copy.about.note}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects-section" data-section>
+        <div class="page-container">
+          <div class="section-intro" data-reveal>
+            <p class="eyebrow">{copy.projectsSection.eyebrow}</p>
+            <h2>{copy.projectsSection.title}</h2>
+            <p>{copy.projectsSection.intro}</p>
+          </div>
+          <div class="project-list">
+            {copy.projects.map((project, index) => {
+              const links = projectLinks[project.id];
+              return (
+                <article id={'project-' + project.id} class="project-card" data-project={project.id} data-reveal>
+                  <div class="project-card-top">
+                    <span class="project-number">0{index + 1} / 04</span>
+                    <span class="project-category">{project.category}</span>
+                  </div>
+                  <div class="project-card-main">
+                    <div class="project-copy">
+                      <h3>{project.title}</h3>
+                      <p class="project-subtitle">{project.subtitle}</p>
+                      <p class="project-teaser">{project.teaser}</p>
+                      <dl class="project-meta">
+                        <div><dt>{copy.projectsSection.period}</dt><dd>{project.period}</dd></div>
+                        <div><dt>{copy.projectsSection.status}</dt><dd>{project.status}</dd></div>
+                      </dl>
+                    </div>
+                    <ProjectVisual id={project.id} lang={lang} />
+                  </div>
+                  <div class="project-card-actions">
+                    <div class="project-link-list">
+                      {links.paper && <a href={links.paper} target="_blank" rel="noopener noreferrer">{copy.projectsSection.readPaper}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>}
+                      {links.earlyCode && <a href={links.earlyCode} target="_blank" rel="noopener noreferrer">{copy.projectsSection.earlyCode}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>}
+                      {links.demo && <a href={links.demo} target="_blank" rel="noopener noreferrer">{copy.projectsSection.liveDemo}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>}
+                      {links.repository && <a href={links.repository} target="_blank" rel="noopener noreferrer">{copy.projectsSection.repository}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>}
+                    </div>
+                    <details class="project-details">
+                      <summary>{project.detailAction}<span class="detail-plus" aria-hidden="true">＋</span></summary>
+                      <div class="project-detail-body">
+                        <div class="detail-main">
+                          <h4>{copy.projectsSection.overview}</h4>
+                          <p>{project.overview}</p>
+                          <h4>{copy.projectsSection.built}</h4>
+                          <p>{project.built}</p>
+                        </div>
+                        <div class="detail-side">
+                          <h4>{copy.projectsSection.architecture}</h4>
+                          <p>{project.architecture}</p>
+                          <h4>{copy.projectsSection.evidence}</h4>
+                          <p>{project.evidence}</p>
+                          <dl>
+                            <div><dt>{copy.projectsSection.role}</dt><dd>{project.role}</dd></div>
+                            {project.stack && <div><dt>{copy.projectsSection.stack}</dt><dd>{project.stack}</dd></div>}
+                          </dl>
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="section research-section" data-section>
+        <div class="page-container">
+          <div class="research-head" data-reveal>
+            <div><p class="eyebrow">{copy.research.eyebrow}</p><h2>{copy.research.title}</h2></div>
+            <p>{copy.research.intro}</p>
+          </div>
+          <div class="research-tracks" data-reveal>
+            {copy.research.tracks.map((track) => (
+              <div class="research-track">
+                <span class="track-label">{track.label}</span>
+                <div class="track-marker" aria-hidden="true"></div>
+                <h3>{track.title}</h3>
+                <p>{track.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section" data-section>
+        <div class="page-container contact-grid" data-reveal>
+          <div>
+            <p class="eyebrow">{copy.contact.eyebrow}</p>
+            <h2>{copy.contact.title}</h2>
+            <p class="contact-intro">{copy.contact.intro}</p>
+          </div>
+          <div class="contact-panel">
+            <div class="contact-row"><span>{copy.contact.email}</span><a href={contactLinks.email}>sebasrodriguezrios4@gmail.com <span aria-hidden="true">↗</span></a></div>
+            <div class="contact-row"><span>{copy.contact.phone}</span><a href={contactLinks.phone}>+57 318 735 4170 <span aria-hidden="true">↗</span></a></div>
+            <div class="contact-row contact-socials">
+              <span>{copy.contact.socials}</span>
+              <div>
+                <a href={contactLinks.github} target="_blank" rel="noopener noreferrer">{copy.contact.github}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>
+                <a href={contactLinks.instagram} target="_blank" rel="noopener noreferrer">{copy.contact.instagram}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>
+                <a href={contactLinks.x} target="_blank" rel="noopener noreferrer">{copy.contact.x}<span aria-hidden="true">↗</span><span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-container footer-inner"><span>© {new Date().getFullYear()} Sebastián Rodríguez Ríos</span><span>{copy.footer.line}</span><a href="#hero">{copy.footer.backToTop} ↑</a></div>
+    </footer>
+    <script>
+      const navLinks = document.querySelectorAll('[data-nav-link]');
+      const sections = document.querySelectorAll('[data-section]');
+      let activeSection = window.location.hash.slice(1) || 'hero';
+      const markActive = (id) => {
+        activeSection = id;
+        navLinks.forEach((link) => {
+          const active = link.dataset.navLink === id;
+          link.classList.toggle('is-active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      };
+      if ('IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+          const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          if (visible[0]) markActive(visible[0].target.id);
+        }, { rootMargin: '-25% 0px -55% 0px', threshold: [0, 0.1, 0.5] });
+        sections.forEach((section) => sectionObserver.observe(section));
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) { entry.target.classList.add('reveal-in'); observer.unobserve(entry.target); }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('[data-reveal]').forEach((element) => revealObserver.observe(element));
+      }
+      try { sessionStorage.setItem('portfolio-language', document.documentElement.lang); } catch (_) {}
+      navLinks.forEach((link) => link.addEventListener('click', () => markActive(link.dataset.navLink)));
+      document.querySelectorAll('[data-language]').forEach((link) => {
+        link.addEventListener('click', () => {
+          try { sessionStorage.setItem('portfolio-language', link.dataset.language); } catch (_) {}
+          const hash = window.location.hash || (activeSection === 'hero' ? '' : '#' + activeSection);
+          link.href = (link.dataset.language === 'es' ? '/es/' : '/') + hash;
+        });
+      });
+      document.querySelectorAll('.mobile-nav a').forEach((link) => {
+        link.addEventListener('click', () => { const menu = link.closest('details'); if (menu) menu.open = false; });
+      });
+    </script>
+  </body>
+</html>

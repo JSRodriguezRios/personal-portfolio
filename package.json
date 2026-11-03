@@ -1,0 +1,20 @@
+{
+  "name": "sebastian-rodriguez-rios-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.0.0",
+    "@fontsource/space-grotesk": "^5.0.0",
+    "@fontsource/ibm-plex-sans": "^5.0.0",
+    "@fontsource/ibm-plex-mono": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

@@ -1,0 +1,33 @@
+---
+import type { Locale } from '../content/portfolio';
+import { content } from '../content/portfolio';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const labels = content[lang].hero.visual;
+---
+
+<div class="hero-graphic" aria-hidden="true">
+  <div class="graphic-topline"><span>SRR / 01</span><span>01 — 04</span></div>
+  <svg viewBox="0 0 560 420" fill="none" role="presentation" focusable="false">
+    <defs>
+      <linearGradient id="trace" x1="70" y1="80" x2="490" y2="365" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#5EEAD4" stop-opacity=".8" />
+        <stop offset="1" stop-color="#A5B4FC" stop-opacity=".65" />
+      </linearGradient>
+      <radialGradient id="halo"><stop stop-color="#5EEAD4" stop-opacity=".16" /><stop offset="1" stop-color="#5EEAD4" stop-opacity="0" /></radialGradient>
+    </defs>
+    <circle cx="284" cy="205" r="180" fill="url(#halo)" />
+    <path d="M42 73H518M42 143H518M42 213H518M42 283H518M42 353H518M84 38V382M176 38V382M268 38V382M360 38V382M452 38V382" stroke="#8BA5BD" stroke-opacity=".1" />
+    <circle cx="284" cy="208" r="126" stroke="#8BA5BD" stroke-opacity=".3" />
+    <circle cx="284" cy="208" r="88" stroke="#8BA5BD" stroke-opacity=".22" stroke-dasharray="4 8" />
+    <path d="M84 294C144 294 149 121 215 121S274 286 348 286 411 154 488 154" stroke="url(#trace)" stroke-width="2" />
+    <path d="M84 294L177 226 215 121 284 208 348 286 425 220 488 154" stroke="#A5B4FC" stroke-opacity=".4" stroke-width="1" />
+    <path d="M177 226L284 208 425 220M215 121L348 286" stroke="#5EEAD4" stroke-opacity=".3" stroke-width="1" stroke-dasharray="3 7" />
+    <circle cx="84" cy="294" r="5" fill="#5EEAD4" /><circle cx="215" cy="121" r="7" fill="#5EEAD4" /><circle cx="284" cy="208" r="13" fill="#131E2F" stroke="#5EEAD4" stroke-width="2" /><circle cx="348" cy="286" r="7" fill="#A5B4FC" /><circle cx="488" cy="154" r="5" fill="#A5B4FC" />
+    <circle cx="177" cy="226" r="3" fill="#8BA5BD" /><circle cx="425" cy="220" r="3" fill="#8BA5BD" />
+    <path d="M284 190v36M266 208h36" stroke="#5EEAD4" stroke-opacity=".7" />
+  </svg>
+  <div class="graphic-labels">
+    {labels.map((label, index) => <span><i class:list={['label-dot', `label-dot-${index}`]}></i>{label}</span>)}
+  </div>
+</div>
