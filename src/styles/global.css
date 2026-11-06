@@ -156,6 +156,43 @@ p { max-width: 75ch; }
 .detail-side dl { display: grid; gap: 18px; margin: 32px 0 0; }
 .detail-side dd { margin-top: 5px; color: var(--muted); }
 
+.decno-deep-dive { display: grid; gap: 44px; margin-top: 40px; padding-top: 38px; border-top: 1px solid rgba(149, 180, 206, .22); }
+.decno-deep-dive h4 { margin: 0 0 20px; font-size: clamp(1.45rem, 2.2vw, 2rem); }
+.decno-label { display: block; margin-bottom: 12px; color: var(--cyan); font: 500 .7rem/1.5 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.decno-company { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 20px 36px; padding: 26px 30px; border: 1px solid rgba(94, 234, 212, .32); border-radius: 10px; background: linear-gradient(120deg, rgba(32, 77, 82, .27), rgba(16, 32, 51, .7)); }
+.decno-company p:last-child { max-width: 92ch; color: var(--text); font-size: 1.05rem; line-height: 1.65; }
+.decno-company a { display: inline-flex; align-items: center; gap: 10px; width: max-content; padding-bottom: 3px; border-bottom: 1px solid var(--cyan); color: var(--cyan); font-size: .87rem; font-weight: 600; white-space: nowrap; }
+.decno-areas ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.decno-areas li { display: flex; align-items: flex-start; gap: 12px; min-width: 0; min-height: 58px; padding: 13px 12px; border: 1px solid rgba(149, 180, 206, .2); border-radius: 6px; background: rgba(11, 25, 42, .66); color: var(--text); font-size: .85rem; line-height: 1.4; overflow-wrap: anywhere; }
+.decno-areas li span { flex: none; color: var(--cyan); font: 500 .65rem/1.9 var(--font-mono); }
+.decno-phase-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.decno-phase { min-width: 0; padding: 24px; border: 1px solid rgba(149, 180, 206, .25); border-radius: 9px; background: rgba(11, 25, 42, .7); }
+.decno-phase-current { grid-column: 1 / -1; border-color: rgba(94, 234, 212, .5); background: linear-gradient(120deg, rgba(29, 77, 76, .22), rgba(11, 25, 42, .7)); }
+.decno-phase-top { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 20px; }
+.decno-phase-number { color: var(--cyan); font: 500 .78rem var(--font-mono); }
+.decno-phase-state { padding: 4px 8px; border: 1px solid rgba(149, 180, 206, .3); border-radius: 20px; color: var(--muted); font: 500 .64rem var(--font-mono); }
+.decno-phase-current .decno-phase-state { border-color: rgba(94, 234, 212, .45); color: var(--cyan); }
+.decno-phase h5 { margin: 0 0 13px; font: 600 clamp(1.2rem, 1.8vw, 1.55rem)/1.18 var(--font-heading); letter-spacing: -.025em; }
+.decno-phase > p, .decno-example p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
+.decno-learning-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 27px 0 0; padding: 0; list-style: none; }
+.decno-learning-steps li { display: flex; gap: 11px; padding-top: 14px; border-top: 1px solid rgba(149, 180, 206, .27); }
+.decno-learning-steps li span { color: var(--cyan); font: 500 .7rem var(--font-mono); }
+.decno-learning-steps p { color: var(--text); font-size: .85rem; line-height: 1.55; }
+.decno-example { display: grid; grid-template-columns: minmax(180px, .3fr) minmax(0, 1fr); gap: 18px 25px; margin-top: 12px; padding: 21px 24px; border-left: 2px solid var(--lavender); background: rgba(165, 180, 252, .07); }
+.decno-example .decno-label { margin: 0; color: var(--lavender); }
+.decno-certificates { padding-top: 38px; border-top: 1px solid rgba(149, 180, 206, .22); }
+.decno-certificates-head { display: grid; grid-template-columns: .7fr 1fr; gap: 20px 35px; margin-bottom: 25px; }
+.decno-certificates-head h4 { margin: 0; }
+.decno-certificates-head p { color: var(--muted); font-size: .92rem; }
+.decno-certificate-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.decno-certificate { min-width: 0; overflow: hidden; margin: 0; border: 1px solid rgba(149, 180, 206, .25); border-radius: 8px; background: rgba(11, 25, 42, .7); }
+.decno-certificate a { display: grid; place-items: center; height: clamp(200px, 24vw, 320px); padding: 12px; background: #eef2f5; }
+.decno-certificate a:hover { background: #fff; }
+.decno-certificate img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.decno-certificate figcaption { display: grid; gap: 6px; padding: 16px 18px 18px; }
+.decno-certificate strong { color: var(--text); font: 600 1rem/1.3 var(--font-heading); }
+.decno-certificate figcaption span { color: var(--muted); font-size: .78rem; line-height: 1.5; }
+
 .research-section { background: linear-gradient(180deg, rgba(19, 30, 47, .53), rgba(19, 30, 47, .2)); }
 .research-head { display: grid; grid-template-columns: 1fr .55fr; align-items: end; gap: 50px; }
 .research-head > p { padding-bottom: 8px; color: var(--muted); font-size: 1.12rem; }
@@ -218,6 +255,7 @@ p { max-width: 75ch; }
   .project-visual { min-height: 350px; }
   .hmm-flow { gap: 13px; }
   .hmm-flow .flow-node:not(:last-child)::after { right: -12px; }
+  .decno-areas ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
@@ -265,6 +303,16 @@ p { max-width: 75ch; }
   .project-card-actions { padding: 0 18px 17px; }
   .project-detail-body { grid-template-columns: 1fr; gap: 28px; }
   .detail-side { padding: 0; border-left: 0; }
+  .decno-deep-dive { gap: 34px; margin-top: 32px; padding-top: 30px; }
+  .decno-company, .decno-certificates-head { grid-template-columns: 1fr; }
+  .decno-company { padding: 21px; }
+  .decno-areas ol { grid-template-columns: 1fr 1fr; }
+  .decno-phase-grid { grid-template-columns: 1fr; }
+  .decno-phase-current { grid-column: auto; }
+  .decno-learning-steps { grid-template-columns: 1fr; gap: 9px; }
+  .decno-example { grid-template-columns: 1fr; }
+  .decno-certificate-grid { grid-template-columns: 1fr; }
+  .decno-certificate a { height: 260px; }
   .research-tracks { grid-template-columns: 1fr; margin-top: 44px; }
   .research-track { padding: 28px 0 34px; border-bottom: 1px solid var(--line); }
   .research-track:not(:last-child) { margin-right: 0; border-right: 0; }
@@ -279,6 +327,8 @@ p { max-width: 75ch; }
   .graphic-labels { gap: 5px; }
   .method-path { gap: 5px; padding: 6px; font-size: .66rem; }
   .method-tag { width: 22px; height: 22px; }
+  .decno-areas ol, .decno-phase-grid { grid-template-columns: 1fr; }
+  .decno-phase { padding: 19px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

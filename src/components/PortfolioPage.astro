@@ -9,6 +9,7 @@ import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import HeroGraphic from './HeroGraphic.astro';
 import ProjectVisual from './ProjectVisual.astro';
+import DecnoDetail from './DecnoDetail.astro';
 import { contactLinks, content, projectLinks, type Locale } from '../content/portfolio';
 
 interface Props { lang: Locale }
@@ -161,6 +162,7 @@ const navItems = [
                           </dl>
                         </div>
                       </div>
+                      {project.id === 'decno' && <DecnoDetail lang={lang} />}
                     </details>
                   </div>
                 </article>

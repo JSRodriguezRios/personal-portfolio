@@ -1,0 +1,77 @@
+---
+import { content, type Locale } from '../content/portfolio';
+
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const copy = content[lang].decno;
+const states = content[lang].visuals.decno;
+---
+
+<div class="decno-deep-dive">
+  <div class="decno-company">
+    <div>
+      <p class="decno-label">{copy.companyHeading}</p>
+      <p>{copy.company}</p>
+    </div>
+    <a href="https://decno.com/nosotros/" target="_blank" rel="noopener noreferrer">
+      {copy.companyLink} <span aria-hidden="true">↗</span>
+      <span class="sr-only">{lang === 'en' ? '(opens in a new tab)' : '(se abre en otra pestaña)'}</span>
+    </a>
+  </div>
+
+  <section class="decno-areas" aria-labelledby="decno-areas-title">
+    <h4 id="decno-areas-title">{copy.areasHeading}</h4>
+    <ol>
+      {copy.areas.map((area, index) => (
+        <li><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{area}</li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="decno-workflow" aria-labelledby="decno-workflow-title">
+    <h4 id="decno-workflow-title">{copy.workflowHeading}</h4>
+    <ol class="decno-phase-grid">
+      {copy.phases.map((phase, index) => (
+        <li class:list={['decno-phase', { 'decno-phase-current': index === 0 }]}>
+          <div class="decno-phase-top">
+            <span class="decno-phase-number">0{index + 1}</span>
+            <span class="decno-phase-state">{index === 0 ? states.current : states.planned}</span>
+          </div>
+          <h5>{phase.title}</h5>
+          <p>{phase.body}</p>
+          {index === 0 && (
+            <ol class="decno-learning-steps">
+              {copy.phases[0].steps.map((step, stepIndex) => (
+                <li><span>{String(stepIndex + 1).padStart(2, '0')}</span><p>{step}</p></li>
+              ))}
+            </ol>
+          )}
+        </li>
+      ))}
+    </ol>
+    <aside class="decno-example">
+      <span class="decno-label">{copy.exampleHeading}</span>
+      <p>{copy.example}</p>
+    </aside>
+  </section>
+
+  <section class="decno-certificates" aria-labelledby="decno-certificates-title">
+    <div class="decno-certificates-head">
+      <h4 id="decno-certificates-title">{copy.certificatesHeading}</h4>
+      <p>{copy.certificatesIntro}</p>
+    </div>
+    <div class="decno-certificate-grid">
+      {copy.certificates.map((certificate) => (
+        <figure class="decno-certificate">
+          <a href={certificate.src} target="_blank" rel="noopener noreferrer" aria-label={certificate.alt}>
+            <img src={certificate.src} alt={certificate.alt} width={certificate.width} height={certificate.height} loading="lazy" decoding="async" />
+          </a>
+          <figcaption>
+            <strong>{certificate.title}</strong>
+            <span>{certificate.detail}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</div>

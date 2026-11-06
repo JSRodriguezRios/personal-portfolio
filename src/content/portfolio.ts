@@ -18,6 +18,28 @@ export interface ProjectContent {
   detailAction: string;
 }
 
+export interface DecnoContent {
+  companyHeading: string;
+  company: string;
+  companyLink: string;
+  areasHeading: string;
+  areas: string[];
+  workflowHeading: string;
+  phases: [
+    { title: string; body: string; steps: [string, string, string] },
+    { title: string; body: string },
+    { title: string; body: string }
+  ];
+  exampleHeading: string;
+  example: string;
+  certificatesHeading: string;
+  certificatesIntro: string;
+  certificates: [
+    { title: string; detail: string; alt: string; src: string; width: number; height: number },
+    { title: string; detail: string; alt: string; src: string; width: number; height: number }
+  ];
+}
+
 export interface PortfolioContent {
   meta: { title: string; description: string };
   nav: { about: string; projects: string; research: string; contact: string; language: string; menu: string };
@@ -30,9 +52,10 @@ export interface PortfolioContent {
   visuals: {
     hmm: { heading: string; nodes: [string, string, string, string, string]; regimes: [string, string, string]; caption: string };
     arima: { heading: string; nodes: [string, string, string, string]; python: string; r: string; caption: string };
-    decno: { heading: string; phases: [string, string, string]; current: string; planned: string; caption: string };
+    decno: { heading: string; current: string; planned: string; caption: string };
     althlon: { heading: string; nodes: [string, string, string, string]; caption: string };
   };
+  decno: DecnoContent;
   projects: [ProjectContent, ProjectContent, ProjectContent, ProjectContent];
 }
 
@@ -104,8 +127,43 @@ export const content: Record<Locale, PortfolioContent> = {
     visuals: {
       hmm: { heading: 'Model workflow', nodes: ['Observations', 'Features', 'HMM', 'Regime probabilities', 'Signals & evaluation'], regimes: ['Bullish', 'Bearish', 'Consolidation'], caption: 'Conceptual workflow; no performance figures are shown.' },
       arima: { heading: 'Research method', nodes: ['Daily closes', 'ADF & differentiation', 'Parameter selection', 'Forecast comparison'], python: 'EACF in Python · AIC', r: 'SCAN in R kernel', caption: 'Python and R were used within the same Jupyter project.' },
-      decno: { heading: 'Program phases', phases: ['Initial familiarity', 'Practical learning & case logs', 'Area-wide projects & evaluation'], current: 'Current phase', planned: 'Planned', caption: 'Public conceptual roadmap; no internal documents or outcomes are represented.' },
+      decno: { heading: 'Program phases', current: 'In progress', planned: 'Planned', caption: 'The shared app and area projects are proposals, not completed deployments.' },
       althlon: { heading: 'Prototype architecture', nodes: ['Frontend', 'Express API', 'PayPal SDK', 'Order state'], caption: 'Conceptual architecture of the school prototype; no transaction data is shown.' }
+    },
+    decno: {
+      companyHeading: 'The organization',
+      company: 'Laboratorios DECNO S.A.S. is a Colombian veterinary pharmaceutical manufacturer with more than 20 years of experience. Its work spans manufacturing, laboratory analysis, and product development, so the AI program must account for very different operational and quality needs.',
+      companyLink: 'About DECNO',
+      areasHeading: 'The 12 areas I work with',
+      areas: ['Accounting', 'Finance', 'Operations', 'Production', 'Human Resources', 'IT', 'Engineering & equipment maintenance', 'Quality Assurance', 'Procurement & supplies', 'Technical & chemistry', 'Executive management', 'Quality Control'],
+      workflowHeading: 'The updated three-stage plan',
+      phases: [
+        {
+          title: 'Guided learning',
+          body: 'The current stage builds each executive’s ability to use AI on real work. We set goals at the start of the month, then review progress and errors together at month-end.',
+          steps: [
+            'Each week, every executive identifies three small problems or processes they want to improve.',
+            'I meet each executive one-on-one and guide them through a case in real time, without giving them the answer.',
+            'They log independent attempts, including the method, time, outcome, and lessons. At month-end, we review the records together and give feedback.'
+          ]
+        },
+        {
+          title: 'Shared documentation app',
+          body: 'Executives identified manual transcription and processing of large volumes of documents as a common bottleneck. The proposed AI-supported app would keep each area’s authorized information separate, organize its records, draft needed documents for human review, and surface useful metrics for improving processes. This is a shared project proposal, not a deployed system.'
+        },
+        {
+          title: 'Executive-led area projects',
+          body: 'Each executive will propose one substantial project for their own area, aimed at a major problem or slow process. I will work alongside them to shape and evaluate these initiatives after the earlier stages. A final review should help each leader continue with greater independence and light supervision. Benefits have not yet been measured.'
+        }
+      ],
+      exampleHeading: 'Example under consideration · production',
+      example: 'A separate production-area proposal would bring factory records together and analyze operational metrics to expose lost time, inefficient shifts, avoidable costs, and opportunities to improve daily output. An advanced model, such as a neural network, would only be considered if suitable data and validation support it.',
+      certificatesHeading: 'Training alongside the work',
+      certificatesIntro: 'These certificates document training that helps me work responsibly across a pharmaceutical manufacturer’s different functions; they are evidence of coursework, not proof that the planned AI applications have been delivered.',
+      certificates: [
+        { title: 'GMP auditor training', detail: 'BPM auditor course · 16 hours · July–August 2026', alt: 'Certificate for Sebastián Rodríguez Ríos confirming completion of 16 hours of Good Manufacturing Practices auditor training', src: '/decno/gmp-auditor-certificate.png', width: 1027, height: 768 },
+        { title: 'Leadership workshops', detail: 'Teamwork, communication, emotional management, and resilience · 16 hours · February 2026', alt: 'Certificate for Sebastián Rodríguez Ríos confirming attendance at DECNO leadership workshops', src: '/decno/leadership-certificate.jpeg', width: 1080, height: 767 }
+      ]
     },
     projects: [
       {
@@ -132,14 +190,14 @@ export const content: Record<Locale, PortfolioContent> = {
       },
       {
         id: 'decno', title: 'DECNO AI', subtitle: 'Enterprise AI adoption program', category: 'Ongoing program', period: '2026–present',
-        role: 'Program lead and one-on-one AI adviser to senior executives across 12 areas, under management supervision', status: 'Ongoing; learning and practical adoption phase',
-        stack: '12 organizational areas · senior executives · phased AI roadmap',
-        teaser: 'I lead DECNO’s company-wide AI adoption program, working directly with senior executives across 12 areas to guide practical use and plan high-impact projects.',
-        overview: 'I lead the design and progressive implementation of DECNO’s AI adoption program and work one-on-one with the senior executive of each of its 12 areas. My role is to guide them in using AI to solve meaningful problems and improve substantial processes, while building their independence with the tools. The current phase combines hands-on learning, individual guidance, and weekly logs of practical cases. Each executive is also expected to bring forward one larger project for their area, aimed at a significant bottleneck or opportunity with the potential to improve productivity across that team. These projects belong to a later development and evaluation phase. One proposed example for production is an AI-powered application that would organize factory records and analyze operational metrics to find lost time, inefficient shifts, avoidable costs, and opportunities to increase daily output. A neural network could be considered if the data and evaluation justify it.',
-        built: 'I designed the phased roadmap and progression criteria, coordinate the 12 participating executives, and provide direct guidance as they work through practical cases and shape their area-wide project proposals. I organized practice through an enterprise ChatGPT environment, weekly case logs, and private collaboration channels. Additional platforms may be explored for future needs but are not presented as completed deployments.',
-        evidence: 'The program is ongoing. Area-wide projects, including the production-records application, are proposals rather than completed systems. No quantified business impact or productivity savings are claimed yet. Only approved, non-sensitive examples may appear on the website.',
-        architecture: 'The program moves from initial familiarity to guided practice and weekly case logs. Each executive then develops a proposal for a high-impact project in their area, followed by planned implementation and evaluation.',
-        detailAction: 'View project overview'
+        role: 'AI adoption program lead; one-on-one guidance to executives in 12 areas, under management supervision', status: 'Ongoing; guided learning phase',
+        stack: '12 organizational areas · one-on-one coaching · case logs · planned AI applications',
+        teaser: 'At a veterinary pharmaceutical manufacturer with over 20 years of experience, I lead AI adoption alongside executives in 12 areas, from production and quality to finance and IT.',
+        overview: 'I lead DECNO’s AI adoption program and work directly with an executive from each of its 12 areas. Because their work ranges from factory production and quality assurance to finance and IT, I guide each leader on real problems in their own context while building a shared path toward larger AI initiatives.',
+        built: 'I designed the phased roadmap and now run individual, hands-on learning sessions. Each executive brings three small problems or processes to improve that week; I guide their thinking in real time without supplying the answer. They record independent attempts and lessons in a learning log, which we review together at the end of each month.',
+        evidence: 'The learning phase is underway. The shared documentation application and the individual area projects are proposals. No completed deployment, quantified savings, or productivity gains are claimed. Internal records and case logs are not published.',
+        architecture: 'The program has three stages: guided learning, a proposed shared application for document-heavy work across areas, and planned high-impact projects proposed by each executive for their own area.',
+        detailAction: 'Explore the program and certificates'
       },
       {
         id: 'althlon', title: 'Althlon Synthesis', subtitle: 'Website and PayPal checkout integration', category: 'School software prototype', period: 'January–May 2025',
@@ -200,8 +258,43 @@ export const content: Record<Locale, PortfolioContent> = {
     visuals: {
       hmm: { heading: 'Flujo del modelo', nodes: ['Observaciones', 'Variables', 'HMM', 'Probabilidades de régimen', 'Señales y evaluación'], regimes: ['Alcista', 'Bajista', 'Consolidación'], caption: 'Flujo conceptual; no se muestran cifras de rendimiento.' },
       arima: { heading: 'Método de investigación', nodes: ['Cierres diarios', 'ADF y diferenciación', 'Selección de parámetros', 'Comparación de pronósticos'], python: 'EACF en Python · AIC', r: 'SCAN en kernel R', caption: 'Se utilizaron Python y R dentro del mismo proyecto en Jupyter.' },
-      decno: { heading: 'Fases del programa', phases: ['Conocimiento inicial', 'Aprendizaje práctico y bitácoras', 'Proyectos por área y evaluación'], current: 'Fase actual', planned: 'Previsto', caption: 'Roadmap conceptual público; no representa documentos ni resultados internos.' },
+      decno: { heading: 'Fases del programa', current: 'En curso', planned: 'Previsto', caption: 'La aplicación compartida y los proyectos por área son propuestas, no sistemas desplegados.' },
       althlon: { heading: 'Arquitectura del prototipo', nodes: ['Frontend', 'API Express', 'SDK de PayPal', 'Estado de órdenes'], caption: 'Arquitectura conceptual del prototipo escolar; no se muestran datos de transacciones.' }
+    },
+    decno: {
+      companyHeading: 'La organización',
+      company: 'Laboratorios DECNO S.A.S. fabrica productos farmacéuticos veterinarios en Colombia y cuenta con más de veinte años de experiencia. Su actividad incluye fabricación, análisis de laboratorio y desarrollo de productos, por lo que el programa de IA debe responder a necesidades operativas y de calidad muy distintas.',
+      companyLink: 'Conoce a DECNO',
+      areasHeading: 'Las 12 áreas con las que trabajo',
+      areas: ['Contabilidad', 'Finanzas', 'Operaciones', 'Producción', 'Recursos humanos', 'Tecnología', 'Ingeniería y mantenimiento de equipos', 'Aseguramiento de calidad', 'Compras y abastecimiento', 'Área técnica y química', 'Gerencia general', 'Control de calidad'],
+      workflowHeading: 'El plan actualizado en tres etapas',
+      phases: [
+        {
+          title: 'Aprendizaje guiado',
+          body: 'La etapa actual desarrolla la capacidad de cada directivo para aplicar IA a su trabajo. Definimos objetivos al iniciar el mes y revisamos juntos avances y errores al terminarlo.',
+          steps: [
+            'Cada semana, cada directivo identifica tres problemas pequeños o procesos que quiere mejorar.',
+            'Me reúno con cada uno y lo guío en tiempo real para resolver un caso, sin darle la respuesta.',
+            'Registran sus intentos autónomos, incluidos método, tiempo, resultado y aprendizajes. Al final del mes revisamos juntos la bitácora y damos retroalimentación.'
+          ]
+        },
+        {
+          title: 'Aplicación documental compartida',
+          body: 'Los directivos identificaron como problema común la transcripción y el procesamiento manual de grandes volúmenes de documentos. La aplicación propuesta, apoyada por IA, mantendría separada la información autorizada de cada área, organizaría sus registros, prepararía los documentos necesarios para revisión humana y mostraría métricas útiles para mejorar procesos. Es una propuesta conjunta, no un sistema desplegado.'
+        },
+        {
+          title: 'Proyectos liderados por cada área',
+          body: 'Cada directivo propondrá un proyecto de gran alcance para su área, orientado a un problema importante o un proceso lento. Trabajaré con ellos para definir y evaluar estas iniciativas después de las etapas anteriores. Una revisión final debe permitirles continuar con más autonomía y supervisión ligera. Todavía no hay resultados medidos.'
+        }
+      ],
+      exampleHeading: 'Ejemplo en consideración · producción',
+      example: 'Una propuesta distinta para el área de producción reuniría los registros de la fábrica y analizaría métricas operativas para detectar pérdidas de tiempo, turnos ineficientes, costos evitables y oportunidades de aumentar la producción diaria. Un modelo avanzado, como una red neuronal, solo se consideraría si los datos y la validación justifican su uso.',
+      certificatesHeading: 'Formación para acompañar el trabajo',
+      certificatesIntro: 'Estos certificados documentan formación que me ayuda a trabajar con responsabilidad en las distintas funciones de una empresa farmacéutica; acreditan cursos, no la entrega de las aplicaciones de IA previstas.',
+      certificates: [
+        { title: 'Formación como auditor BPM', detail: 'Curso de auditoría en Buenas Prácticas de Manufactura · 16 horas · julio–agosto de 2026', alt: 'Certificado de Sebastián Rodríguez Ríos por completar 16 horas de formación como auditor de Buenas Prácticas de Manufactura', src: '/decno/gmp-auditor-certificate.png', width: 1027, height: 768 },
+        { title: 'Talleres de liderazgo', detail: 'Trabajo en equipo, comunicación, gestión emocional y resiliencia · 16 horas · febrero de 2026', alt: 'Certificado de Sebastián Rodríguez Ríos por asistir a talleres de liderazgo de DECNO', src: '/decno/leadership-certificate.jpeg', width: 1080, height: 767 }
+      ]
     },
     projects: [
       {
@@ -228,14 +321,14 @@ export const content: Record<Locale, PortfolioContent> = {
       },
       {
         id: 'decno', title: 'DECNO AI', subtitle: 'Programa de adopción y escalamiento de IA', category: 'Programa en ejecución', period: '2026–actualidad',
-        role: 'Liderazgo del programa y asesoría individual en IA a los directivos de 12 áreas, con supervisión de Gerencia', status: 'En ejecución; fase de aprendizaje y práctica',
-        stack: '12 áreas organizacionales · directivos · hoja de ruta por fases',
-        teaser: 'Lidero el programa de adopción de IA de DECNO y trabajo directamente con los directivos de sus 12 áreas para orientar su uso práctico y planear proyectos de alto impacto.',
-        overview: 'Lidero el diseño y la implementación progresiva del programa de adopción de IA de DECNO y trabajo de manera individual con el directivo de cada una de sus 12 áreas. Mi misión es orientarlos para usar IA en la solución de problemas importantes y la mejora de procesos de gran alcance, mientras desarrollan autonomía con las herramientas. La etapa actual combina aprendizaje práctico, acompañamiento individual y bitácoras semanales de casos. Cada directivo también deberá proponer un proyecto de mayor escala para su área, dirigido a un problema o cuello de botella significativo y con potencial para mejorar la productividad de todo su equipo. Estos proyectos corresponden a una fase posterior de desarrollo y evaluación. Un ejemplo propuesto para producción es una aplicación con IA que organizaría los registros de la fábrica y analizaría métricas operativas para detectar pérdidas de tiempo, turnos ineficientes, costos evitables y oportunidades para aumentar la producción diaria. Podría considerarse una red neuronal si los datos y la evaluación justifican su uso.',
-        built: 'Diseñé la hoja de ruta por fases y los criterios de avance, coordino a los 12 directivos participantes y los oriento personalmente mientras resuelven casos prácticos y definen propuestas de proyectos de alcance amplio para sus áreas. Organicé el trabajo mediante un entorno empresarial de ChatGPT, bitácoras semanales y canales internos de colaboración. El programa contempla explorar otras plataformas, pero no se presentan como soluciones ya desplegadas.',
-        evidence: 'El programa sigue en ejecución. Los proyectos por área, incluida la aplicación para analizar registros de producción, son propuestas y no sistemas terminados. Todavía no se afirman ahorros de tiempo ni resultados de impacto empresarial cuantificados. Solo se muestran ejemplos no sensibles y aprobados para divulgación.',
-        architecture: 'El programa avanza desde el conocimiento inicial hasta la práctica guiada y las bitácoras semanales. Después, cada directivo desarrolla una propuesta de alto impacto para su área, seguida de implementación y evaluación previstas.',
-        detailAction: 'Ver proyecto'
+        role: 'Liderazgo del programa de adopción de IA; guía individual a directivos de 12 áreas, con supervisión de Gerencia', status: 'En ejecución; etapa de aprendizaje guiado',
+        stack: '12 áreas organizacionales · acompañamiento individual · bitácoras · aplicaciones de IA previstas',
+        teaser: 'En una farmacéutica veterinaria con más de veinte años de trayectoria, lidero la adopción de IA junto a directivos de 12 áreas, desde producción y calidad hasta finanzas y tecnología.',
+        overview: 'Lidero el programa de adopción de IA de DECNO y trabajo directamente con un directivo de cada una de sus 12 áreas. Como su labor abarca desde la producción en fábrica y el aseguramiento de calidad hasta las finanzas y la tecnología, oriento a cada líder sobre problemas reales de su propio contexto y construimos un camino común hacia iniciativas de IA de mayor escala.',
+        built: 'Diseñé la hoja de ruta por etapas y ahora dirijo sesiones individuales de aprendizaje práctico. Cada directivo lleva tres problemas pequeños o procesos que quiere mejorar esa semana; lo guío en tiempo real sin darle la respuesta. Registran los intentos autónomos y aprendizajes en una bitácora, que revisamos juntos al final de cada mes.',
+        evidence: 'La etapa de aprendizaje está en marcha. La aplicación documental compartida y los proyectos individuales por área son propuestas. No se afirman despliegues terminados, ahorros cuantificados ni aumentos de productividad. No se publican registros internos ni bitácoras.',
+        architecture: 'El programa tiene tres etapas: aprendizaje guiado, una aplicación compartida propuesta para el trabajo documental de las áreas y proyectos de alto impacto que cada directivo propondrá para su propia área.',
+        detailAction: 'Explorar el programa y los certificados'
       },
       {
         id: 'althlon', title: 'Althlon Synthesis', subtitle: 'Web y flujo de pago con PayPal', category: 'Prototipo escolar de software', period: 'enero–mayo de 2025',

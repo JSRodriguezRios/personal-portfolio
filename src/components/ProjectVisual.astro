@@ -46,11 +46,11 @@ const visual = content[lang].visuals[id];
   <figure class="project-visual visual-decno" aria-labelledby="decno-visual-title">
     <figcaption id="decno-visual-title" class="visual-heading">{visual.heading}</figcaption>
     <ol class="phase-list">
-      {content[lang].visuals.decno.phases.map((phase, index) => (
-        <li class:list={['phase-item', { 'phase-current': index === 1 }]}>
+      {content[lang].decno.phases.map((phase, index) => (
+        <li class:list={['phase-item', { 'phase-current': index === 0 }]}>
           <span class="phase-number">0{index + 1}</span>
-          <span class="phase-name">{phase}</span>
-          <span class="phase-status">{index === 1 ? content[lang].visuals.decno.current : index === 2 ? content[lang].visuals.decno.planned : ''}</span>
+          <span class="phase-name">{phase.title}</span>
+          <span class="phase-status">{index === 0 ? content[lang].visuals.decno.current : content[lang].visuals.decno.planned}</span>
         </li>
       ))}
     </ol>
