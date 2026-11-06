@@ -92,7 +92,7 @@ export const content: Record<Locale, PortfolioContent> = {
       tracks: [
         { label: '01 / Investigate', title: 'Quantitative research', body: 'Independent school studies of ARIMA forecasts and Hidden Markov Models, with methods and limitations recorded in research papers.' },
         { label: '02 / Build', title: 'Software engineering', body: 'A deployed school prototype joining a custom frontend, an Express backend, and a PayPal checkout integration.' },
-        { label: '03 / Apply', title: 'Organizational AI', body: 'An ongoing, phased program at DECNO focused on practical learning and documenting small work problems solved with AI.' }
+        { label: '03 / Apply', title: 'Organizational AI', body: 'I guide senior executives across DECNO’s 12 areas through practical AI adoption and the planning of high-impact projects for their teams.' }
       ]
     },
     contact: {
@@ -104,7 +104,7 @@ export const content: Record<Locale, PortfolioContent> = {
     visuals: {
       hmm: { heading: 'Model workflow', nodes: ['Observations', 'Features', 'HMM', 'Regime probabilities', 'Signals & evaluation'], regimes: ['Bullish', 'Bearish', 'Consolidation'], caption: 'Conceptual workflow; no performance figures are shown.' },
       arima: { heading: 'Research method', nodes: ['Daily closes', 'ADF & differentiation', 'Parameter selection', 'Forecast comparison'], python: 'EACF in Python · AIC', r: 'SCAN in R kernel', caption: 'Python and R were used within the same Jupyter project.' },
-      decno: { heading: 'Program phases', phases: ['Initial familiarity', 'Practical learning & case logs', 'Larger projects & evaluation'], current: 'Current phase', planned: 'Planned', caption: 'Public conceptual roadmap; no internal documents or outcomes are represented.' },
+      decno: { heading: 'Program phases', phases: ['Initial familiarity', 'Practical learning & case logs', 'Area-wide projects & evaluation'], current: 'Current phase', planned: 'Planned', caption: 'Public conceptual roadmap; no internal documents or outcomes are represented.' },
       althlon: { heading: 'Prototype architecture', nodes: ['Frontend', 'Express API', 'PayPal SDK', 'Order state'], caption: 'Conceptual architecture of the school prototype; no transaction data is shown.' }
     },
     projects: [
@@ -132,13 +132,13 @@ export const content: Record<Locale, PortfolioContent> = {
       },
       {
         id: 'decno', title: 'DECNO AI', subtitle: 'Enterprise AI adoption program', category: 'Ongoing program', period: '2026–present',
-        role: 'Program methodology and leadership, under management supervision', status: 'Ongoing; learning and practical adoption phase',
-        stack: '12 organizational areas · 12 participating leaders',
-        teaser: 'I currently lead the design and progressive implementation of an AI adoption program at DECNO.',
-        overview: 'I currently lead the design and progressive implementation of an AI adoption program at DECNO. Its purpose is to help leaders across 12 business functions move from basic familiarity with AI tools to a systematic approach to solving day-to-day work problems. I designed a phased roadmap, a hands-on learning methodology, and a weekly case-logging process. At the current stage, participating leaders document small problems they have solved with AI and receive individual support to build independence. Later stages are intended to tackle more complex departmental projects and assess overall results.',
-        built: 'I developed the roadmap and progression criteria, coordinated the participating leaders, and organized practice through an enterprise ChatGPT environment, weekly case logs, and private collaboration channels. Additional platforms may be explored for future needs but are not presented as completed deployments.',
-        evidence: 'The initiative is ongoing. No quantified business impact or productivity savings are claimed yet. Only approved, non-sensitive examples may appear on the website.',
-        architecture: 'The public roadmap distinguishes the current practical-learning stage from later, planned departmental projects and evaluation.',
+        role: 'Program lead and one-on-one AI adviser to senior executives across 12 areas, under management supervision', status: 'Ongoing; learning and practical adoption phase',
+        stack: '12 organizational areas · senior executives · phased AI roadmap',
+        teaser: 'I lead DECNO’s company-wide AI adoption program, working directly with senior executives across 12 areas to guide practical use and plan high-impact projects.',
+        overview: 'I lead the design and progressive implementation of DECNO’s AI adoption program and work one-on-one with the senior executive of each of its 12 areas. My role is to guide them in using AI to solve meaningful problems and improve substantial processes, while building their independence with the tools. The current phase combines hands-on learning, individual guidance, and weekly logs of practical cases. Each executive is also expected to bring forward one larger project for their area, aimed at a significant bottleneck or opportunity with the potential to improve productivity across that team. These projects belong to a later development and evaluation phase. One proposed example for production is an AI-powered application that would organize factory records and analyze operational metrics to find lost time, inefficient shifts, avoidable costs, and opportunities to increase daily output. A neural network could be considered if the data and evaluation justify it.',
+        built: 'I designed the phased roadmap and progression criteria, coordinate the 12 participating executives, and provide direct guidance as they work through practical cases and shape their area-wide project proposals. I organized practice through an enterprise ChatGPT environment, weekly case logs, and private collaboration channels. Additional platforms may be explored for future needs but are not presented as completed deployments.',
+        evidence: 'The program is ongoing. Area-wide projects, including the production-records application, are proposals rather than completed systems. No quantified business impact or productivity savings are claimed yet. Only approved, non-sensitive examples may appear on the website.',
+        architecture: 'The program moves from initial familiarity to guided practice and weekly case logs. Each executive then develops a proposal for a high-impact project in their area, followed by planned implementation and evaluation.',
         detailAction: 'View project overview'
       },
       {
@@ -188,7 +188,7 @@ export const content: Record<Locale, PortfolioContent> = {
       tracks: [
         { label: '01 / Investigar', title: 'Investigación cuantitativa', body: 'Estudios escolares independientes de pronósticos ARIMA y Modelos Ocultos de Markov, con métodos y limitaciones documentados en papers.' },
         { label: '02 / Construir', title: 'Ingeniería de software', body: 'Un prototipo escolar desplegado que une un frontend propio, un backend Express y una integración de checkout con PayPal.' },
-        { label: '03 / Aplicar', title: 'IA organizacional', body: 'Un programa por fases en DECNO, aún en ejecución, centrado en aprendizaje práctico y registro de problemas pequeños resueltos con IA.' }
+        { label: '03 / Aplicar', title: 'IA organizacional', body: 'Acompaño a los directivos de las 12 áreas de DECNO en la adopción práctica de IA y la planificación de proyectos de alto impacto para sus equipos.' }
       ]
     },
     contact: {
@@ -200,7 +200,7 @@ export const content: Record<Locale, PortfolioContent> = {
     visuals: {
       hmm: { heading: 'Flujo del modelo', nodes: ['Observaciones', 'Variables', 'HMM', 'Probabilidades de régimen', 'Señales y evaluación'], regimes: ['Alcista', 'Bajista', 'Consolidación'], caption: 'Flujo conceptual; no se muestran cifras de rendimiento.' },
       arima: { heading: 'Método de investigación', nodes: ['Cierres diarios', 'ADF y diferenciación', 'Selección de parámetros', 'Comparación de pronósticos'], python: 'EACF en Python · AIC', r: 'SCAN en kernel R', caption: 'Se utilizaron Python y R dentro del mismo proyecto en Jupyter.' },
-      decno: { heading: 'Fases del programa', phases: ['Conocimiento inicial', 'Aprendizaje práctico y bitácoras', 'Proyectos mayores y evaluación'], current: 'Fase actual', planned: 'Previsto', caption: 'Roadmap conceptual público; no representa documentos ni resultados internos.' },
+      decno: { heading: 'Fases del programa', phases: ['Conocimiento inicial', 'Aprendizaje práctico y bitácoras', 'Proyectos por área y evaluación'], current: 'Fase actual', planned: 'Previsto', caption: 'Roadmap conceptual público; no representa documentos ni resultados internos.' },
       althlon: { heading: 'Arquitectura del prototipo', nodes: ['Frontend', 'API Express', 'SDK de PayPal', 'Estado de órdenes'], caption: 'Arquitectura conceptual del prototipo escolar; no se muestran datos de transacciones.' }
     },
     projects: [
@@ -228,13 +228,13 @@ export const content: Record<Locale, PortfolioContent> = {
       },
       {
         id: 'decno', title: 'DECNO AI', subtitle: 'Programa de adopción y escalamiento de IA', category: 'Programa en ejecución', period: '2026–actualidad',
-        role: 'Diseño metodológico y liderazgo del programa; con supervisión de Gerencia', status: 'En ejecución; fase de aprendizaje y práctica',
-        stack: '12 áreas organizacionales · 12 líderes participantes',
-        teaser: 'Actualmente lidero el diseño y la implementación progresiva de un programa de adopción de inteligencia artificial en DECNO.',
-        overview: 'Actualmente lidero el diseño y la implementación progresiva de un programa de adopción de inteligencia artificial en DECNO. El objetivo es que responsables de 12 áreas empresariales pasen del conocimiento inicial de las herramientas a la resolución sistemática de problemas de trabajo. Diseñé una hoja de ruta por fases, una metodología de aprendizaje práctico y un sistema de registro semanal de casos. En la etapa actual, los líderes documentan problemas pequeños resueltos con IA y reciben acompañamiento individual para desarrollar autonomía. Las fases posteriores contemplan proyectos de mayor complejidad y una evaluación integral de los resultados.',
-        built: 'Definí el roadmap y los criterios de avance; coordiné a los líderes por área; organicé el trabajo mediante un entorno empresarial de ChatGPT, una bitácora de casos y canales internos de colaboración. El programa contempla explorar otras plataformas para problemas futuros, pero estas aplicaciones no se presentan como soluciones terminadas.',
-        evidence: 'Es una iniciativa organizacional en desarrollo. Todavía no se publican ahorros de tiempo ni resultados de impacto empresarial cuantificados. Compartir únicamente documentos y ejemplos aprobados para divulgación.',
-        architecture: 'El roadmap público distingue la etapa actual de aprendizaje práctico de los proyectos por área y la evaluación previstos para más adelante.',
+        role: 'Liderazgo del programa y asesoría individual en IA a los directivos de 12 áreas, con supervisión de Gerencia', status: 'En ejecución; fase de aprendizaje y práctica',
+        stack: '12 áreas organizacionales · directivos · hoja de ruta por fases',
+        teaser: 'Lidero el programa de adopción de IA de DECNO y trabajo directamente con los directivos de sus 12 áreas para orientar su uso práctico y planear proyectos de alto impacto.',
+        overview: 'Lidero el diseño y la implementación progresiva del programa de adopción de IA de DECNO y trabajo de manera individual con el directivo de cada una de sus 12 áreas. Mi misión es orientarlos para usar IA en la solución de problemas importantes y la mejora de procesos de gran alcance, mientras desarrollan autonomía con las herramientas. La etapa actual combina aprendizaje práctico, acompañamiento individual y bitácoras semanales de casos. Cada directivo también deberá proponer un proyecto de mayor escala para su área, dirigido a un problema o cuello de botella significativo y con potencial para mejorar la productividad de todo su equipo. Estos proyectos corresponden a una fase posterior de desarrollo y evaluación. Un ejemplo propuesto para producción es una aplicación con IA que organizaría los registros de la fábrica y analizaría métricas operativas para detectar pérdidas de tiempo, turnos ineficientes, costos evitables y oportunidades para aumentar la producción diaria. Podría considerarse una red neuronal si los datos y la evaluación justifican su uso.',
+        built: 'Diseñé la hoja de ruta por fases y los criterios de avance, coordino a los 12 directivos participantes y los oriento personalmente mientras resuelven casos prácticos y definen propuestas de proyectos de alcance amplio para sus áreas. Organicé el trabajo mediante un entorno empresarial de ChatGPT, bitácoras semanales y canales internos de colaboración. El programa contempla explorar otras plataformas, pero no se presentan como soluciones ya desplegadas.',
+        evidence: 'El programa sigue en ejecución. Los proyectos por área, incluida la aplicación para analizar registros de producción, son propuestas y no sistemas terminados. Todavía no se afirman ahorros de tiempo ni resultados de impacto empresarial cuantificados. Solo se muestran ejemplos no sensibles y aprobados para divulgación.',
+        architecture: 'El programa avanza desde el conocimiento inicial hasta la práctica guiada y las bitácoras semanales. Después, cada directivo desarrolla una propuesta de alto impacto para su área, seguida de implementación y evaluación previstas.',
         detailAction: 'Ver proyecto'
       },
       {
